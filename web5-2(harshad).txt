@@ -1,0 +1,21 @@
+function harshad(n){
+if(n<10){
+	return true;
+}
+ns=n.toString();
+nn=ns.split("");
+s=100;
+while (s>10){
+s=0;
+for(i=0;i<nn.length;i++){
+	t=praseInt(nn[i]);
+	s=s+t;
+}
+ns=s.toString();
+nn=s.split("");
+}
+if(n%s==0){
+	return true;
+}else{
+	return false;}
+}

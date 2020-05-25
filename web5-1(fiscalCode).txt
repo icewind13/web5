@@ -1,0 +1,102 @@
+function fiscalCode(surname,name,gender,dob){
+    var f1=[];
+    var sur=surname.toUpperCase();
+    var sn=sur.split("");
+    var v1=[];
+    var c1=[];
+    for(i=0;i<sn.length;i++){
+	switch(sn[i]){
+		case "U":
+		case "I":
+		case "A":
+		case "O":
+		case "E":
+        case "Y":
+			v1.push(sn[i]);
+			break;
+		default:
+			c1.push(sn[i]);
+	}
+    }
+    if(c1.length>=3){
+	f1.push(c1[0],c1[1],c1[2]);
+    }else{
+	for(n=0;n<c1.length;n++){
+		f1.push(c1[n]);
+	}
+	for(t=0;t<(3-c1.length);t++){
+		if(t==v1.length){
+			break;
+		}
+		f1.push(v1[t]);
+	}
+        while(f1.length<3){
+		f1.push("X");
+        }
+    }
+    var nam=name.toUpperCase();
+    var na=nam.split("");
+    var v2=[];
+    var c2=[];
+    for(k=0;k<na.length;k++){
+	switch(na[i]){
+		case "U":
+		case "I":
+		case "A":
+		case "O":
+		case "E":
+	        case "Y":
+			v2.push(na[k]);
+			break;
+		default:
+			c2.push(na[k]);
+	}
+    }
+    if(c2.length==3){
+	f1.push(c2[0],c2[1],c2[2]);
+    }else if(c2.length>3){
+		f1.push(c2[0],c2[2],c2[c2.length-1])
+	}else{
+	for(n=0;n<c2.length;n++){
+		f1.push(c2[n]);
+	}
+	for(t=0;t<(3-c2.length);t++){
+		if(t==v2.length){
+			break;
+		}
+		f1.push(v2[t]);
+	}
+        while(f1.length<6){
+		f1.push("X");
+        }
+    }
+    var d=dob.split("/");
+    var year=parseInt(d[2])%100;
+    var ys=year.toString(); 
+    if(year==0){
+	f1.push("00");
+    }else if(year<10){
+	f1.push("0",ys);
+    }else{
+	f1.push(ys);
+    }
+    f1.push(year);
+    const months = { 1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "H", 7: "L", 8: "M", 9: "P", 10: "R", 11: "S", 12: "T" }
+    var m=parseInt(d[1]);
+    var ml=months[m];
+    f1.push(ml);
+    var day=parseInt(d[0]);
+    if(gender=="M"){
+	var d=day.toString();
+	if(day<10){
+		f1.push("0",d);
+	}else{
+		f1.push(d);
+	}
+    }else{
+	day=day+40;
+	var d=day.toString();
+	f1.push(d);
+}
+    return f1.join("");
+}

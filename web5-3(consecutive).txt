@@ -1,0 +1,13 @@
+function consecutive(n){
+	nn=n.split("");
+	c=true;
+	for(i=1;i<n.lengh;i++){
+		a=parseInt(nn[i-1]);
+		b=parseInt(nn[i]);
+			if(b<a){
+				c=false;
+				break;
+		}
+	}
+	return c;
+}
